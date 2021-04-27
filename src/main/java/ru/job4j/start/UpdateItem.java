@@ -17,7 +17,8 @@ public class UpdateItem extends BaseAction {
         if (tracker.replace(id, item)) {
             System.out.println("------Новая заявка с id:" + item.getId());
         } else {
-            System.out.println("----Заявка не найдена----");        }
+            System.out.println("----Заявка не найдена----");
+        }
 
     }
 

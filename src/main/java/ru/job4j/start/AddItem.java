@@ -1,7 +1,6 @@
 package ru.job4j.start;
 
 import ru.job4j.models.Item;
-import ru.job4j.start.StartUI;
 
 public class AddItem extends BaseAction {
 

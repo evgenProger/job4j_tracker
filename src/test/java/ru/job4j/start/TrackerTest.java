@@ -1,10 +1,8 @@
 package ru.job4j.start;
 
-import org.junit.Assert;
 import org.junit.Test;
 import ru.job4j.models.Item;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

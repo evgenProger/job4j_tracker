@@ -1,6 +1,7 @@
 package ru.job4j.start;
 
 import ru.job4j.models.Item;
+import ru.job4j.models.ConnectionRollback;
 
 import java.io.InputStream;
 import java.sql.*;
@@ -10,6 +11,14 @@ import java.util.Properties;
 
 public class SqlTracker implements Store {
     private Connection cn;
+
+
+
+    public SqlTracker(Connection cn) throws SQLException {
+        init();
+        this.cn =  cn;
+
+    }
 
     public SqlTracker() {
         init();
@@ -32,7 +41,7 @@ public class SqlTracker implements Store {
     }
 
     @Override
-    public Item add(Item item)  {
+    public Item add(Item item) {
         try (PreparedStatement statement = cn.prepareStatement("insert into items(name) values (?)",
                 Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, item.getName());
@@ -53,7 +62,7 @@ public class SqlTracker implements Store {
     }
 
     @Override
-    public boolean replace(String id, Item item)  {
+    public boolean replace(String id, Item item) {
         boolean result = false;
         try (PreparedStatement statement = cn.prepareStatement("update items set name = ? where id = ?")) {
             statement.setString(1, item.getName());
@@ -66,7 +75,7 @@ public class SqlTracker implements Store {
     }
 
     @Override
-    public boolean delete(String id)  {
+    public boolean delete(String id) {
         boolean result = false;
         try (PreparedStatement statement = cn.prepareStatement("delete from items where id = ?")) {
             statement.setInt(1, Integer.parseInt(id));
@@ -97,7 +106,7 @@ public class SqlTracker implements Store {
     }
 
     @Override
-    public List<Item> findByName(String key)  {
+    public List<Item> findByName(String key) {
         List<Item> items = new ArrayList<>();
         try (PreparedStatement statement = cn.prepareStatement("select * from items where name = ?")) {
             statement.setString(1, key);
@@ -117,7 +126,7 @@ public class SqlTracker implements Store {
     }
 
     @Override
-    public Item findById(String id)  {
+    public Item findById(String id) {
         Item item = null;
         try (PreparedStatement statement = cn.prepareStatement("select * from items where id = ?")) {
             statement.setInt(1, Integer.parseInt(id));
@@ -132,12 +141,6 @@ public class SqlTracker implements Store {
             throwables.printStackTrace();
         }
         return item;
-    }
-
-    public void deleteAll() throws SQLException {
-        try (PreparedStatement statement = cn.prepareStatement("delete  from items")) {
-            statement.execute();
-        }
     }
 
     @Override

@@ -6,10 +6,11 @@
     <version>2.0</version>
     <name>junior</name>
 
-
     <properties>
         <maven.compiler.target>14</maven.compiler.target>
         <maven.compiler.source>14</maven.compiler.source>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <profiles>
@@ -53,33 +54,6 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>11</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-graphics -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-            <version>11</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-base -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-base</artifactId>
-            <version>11</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-controls -->
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>11</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -87,7 +61,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.4</version>
+                <version>0.8.6</version>
                 <executions>
                     <execution>
                         <goals>
@@ -104,54 +78,54 @@
                 </executions>
             </plugin>
 
-              <plugin>
-                  <groupId>org.liquibase</groupId>
-                  <artifactId>liquibase-maven-plugin</artifactId>
-                  <version>3.6.2</version>
-                  <configuration>
-                      <changeLogFile>db/master.xml</changeLogFile>
-                      <url>${db.url}</url>
-                      <driver>${db.driver}</driver>
-                      <username>${db.username}</username>
-                      <password>${db.password}</password>
-                  </configuration>
-                  <executions>
-                      <execution>
-                          <phase>process-resources</phase>
-                          <goals>
-                              <goal>update</goal>
-                          </goals>
-                      </execution>
-                  </executions>
-              </plugin>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>3.6.2</version>
+                <configuration>
+                    <changeLogFile>db/master.xml</changeLogFile>
+                    <url>${db.url}</url>
+                    <driver>${db.driver}</driver>
+                    <username>${db.username}</username>
+                    <password>${db.password}</password>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
 
-              <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-javadoc-plugin</artifactId>
-                  <version>3.0.0</version>
-              </plugin>
-              <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-checkstyle-plugin</artifactId>
-                  <version>2.17</version>
-                  <executions>
-                      <execution>
-                          <id>validate</id>
-                          <phase>validate</phase>
-                          <configuration>
-                              <configLocation>checkstyle.xml</configLocation>
-                              <encoding>UTF-8</encoding>
-                              <consoleOutput>true</consoleOutput>
-                              <failsOnError>true</failsOnError>
-                              <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                          </configuration>
-                          <goals>
-                              <goal>check</goal>
-                          </goals>
-                      </execution>
-                  </executions>
-              </plugin>
-          </plugins>
-      </build>
-  </project>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <configLocation>checkstyle.xml</configLocation>
+                            <encoding>UTF-8</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
+                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                        </configuration>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

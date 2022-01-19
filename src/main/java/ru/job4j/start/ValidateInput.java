@@ -5,9 +5,11 @@ import java.util.List;
 public class ValidateInput extends ConsoleInput {
 
     private final Input input;
+    private final Output out;
 
-    public ValidateInput(Input input) {
+    public ValidateInput(Input input, Output out) {
         this.input = input;
+        this.out = out;
     }
 
     @Override
@@ -28,15 +30,12 @@ public class ValidateInput extends ConsoleInput {
                 invalid = false;
 
             } catch (MenuOutException moe) {
-                System.out.println("Пожалуйста введите ключ из меню");
+                out.println("Пожалуйста введите ключ из меню");
             } catch (NumberFormatException nfe) {
-                System.out.println("Пожалуйста, введите корректные данные снова");
+                out.println("Пожалуйста, введите корректные данные снова");
 
             }
         } while (invalid);
         return value;
-
-
     }
-
 }

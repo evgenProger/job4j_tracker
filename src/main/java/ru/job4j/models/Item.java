@@ -37,9 +37,9 @@ public class Item {
                 + create + '}';
     }
 
-    public Item(String name, String id) {
+    public Item(String name, String description) {
         this.name = name;
-        this.id = id;
+        this.description = description;
     }
 
     public String getName() {

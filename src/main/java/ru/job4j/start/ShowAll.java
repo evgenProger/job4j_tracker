@@ -6,18 +6,20 @@ package ru.job4j.start;
 
 public class ShowAll extends BaseAction {
 
-    public ShowAll(int key, String name) {
-        super(key, name);
+    private final Output out;
+
+    public ShowAll(String name, Output out) {
+        super(name);
+        this.out = out;
     }
 
 
     @Override
     public void execute(Input input, Store tracker) {
-        System.out.println("------Отображение всех заявок------");
+        out.println("------Отображение всех заявок------");
         List<Item> items = tracker.findAll();
         for (Item item : items) {
-            System.out.println(item);
+            out.println(item);
         }
-
     }
 }

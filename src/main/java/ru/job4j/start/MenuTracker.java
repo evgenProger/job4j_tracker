@@ -3,6 +3,8 @@ package ru.job4j.start;
 import java.util.ArrayList;
 
 public class MenuTracker  {
+
+    private final Output output;
     /**
      * @param хранит ссылку на объект
      */
@@ -17,10 +19,12 @@ public class MenuTracker  {
     private ArrayList<UserAction> actions = new ArrayList<>();
     /**
      * Конструктор
+     * @param output
      * @param input объект типа Input
      * @param tracker объект типа Tracker
      */
-    public MenuTracker(Input input, Store tracker) {
+    public MenuTracker(Output output, Input input, Store tracker) {
+        this.output = output;
         this.input = input;
         this.tracker = tracker;
     }
@@ -38,13 +42,13 @@ public class MenuTracker  {
      * Метод заполняет массив
      */
      public void fillActions(StartUI input) {
-        this.actions.add(new AddItem(0, "Добавить новую заявку"));
-        this.actions.add(new UpdateItem(1, "Редактировать заявку"));
-        this.actions.add(new ShowAll(2, "Показать все заявки"));
-        this.actions.add(new DeleteItem(3, "Удалить заявку"));
-        this.actions.add(new FindById(4, "Найти заявку по id"));
-        this.actions.add(new FindByName(5, "Найти заявку по имени"));
-        this.actions.add(new Exit(input, 6, "Выйти из программы"));
+        this.actions.add(new AddItem("Добавить новую заявку", output));
+        this.actions.add(new UpdateItem(output));
+        this.actions.add(new ShowAll("Показать все заявки", output));
+        this.actions.add(new DeleteItem("Удалить заявку", output));
+        this.actions.add(new FindById("Найти заявку по id", output));
+        this.actions.add(new FindByName("Найти заявку по имени", output));
+        this.actions.add(new Exit(input, "Выйти из программы", output));
     }
     /**
      * Метод в зависимости от указанного ключа, выполняет соответствующее действие
@@ -60,9 +64,10 @@ public class MenuTracker  {
      */
 
     public void show() {
+        int key = 0;
         for (UserAction action: this.actions) {
             if (action != null) {
-                System.out.println(action.info());
+                output.println(key++ + " " + action.info());
             }
         }
     }

@@ -10,6 +10,8 @@ import java.util.List;
 
 public class StartUI {
 
+    private Output output;
+
     private boolean working = true;
     /**
      * Получение данных от пользователя
@@ -22,11 +24,13 @@ public class StartUI {
     /**
      * Конструктор инициализирующий поля
      *
+     * @param output
      * @param input   ввод данных
      * @param tracker хранилище заявок
      */
 
-    public StartUI(Input input, Store tracker) {
+    public StartUI(Output output, Input input, Store tracker) {
+        this.output = output;
         this.input = input;
         this.tracker = tracker;
     }
@@ -36,7 +40,7 @@ public class StartUI {
      */
 
     public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        MenuTracker menu = new MenuTracker(output, this.input, this.tracker);
         List<Integer> range = new ArrayList<>();
         menu.fillActions(this);
         for (int i = 0; i < menu.getActionsLentgh(); i++) {
@@ -62,7 +66,7 @@ public class StartUI {
     public static void main(String[] args) {
            try (Store tracker = new SqlTracker()) {
             tracker.init();
-            new StartUI(new ValidateInput(new ConsoleInput()), tracker).init();
+            new StartUI(new ConsolOutput(), new ValidateInput(new ConsoleInput(), new ConsolOutput()), tracker).init();
         } catch (Exception e) {
             e.printStackTrace();
         }

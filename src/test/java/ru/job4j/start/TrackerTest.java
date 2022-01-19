@@ -19,8 +19,6 @@ public class TrackerTest {
         tracker.add(item);
         Item result = tracker.findById(item.getId());
         assertThat(result.getName(), is(item.getName()));
-
-
     }
 
     @Test
@@ -65,9 +63,6 @@ public class TrackerTest {
         List<Item> list = tracker.findAll();
         int result = list.size();
         assertThat(result, is(2));
-
-
-
     }
 
     @Test
@@ -85,5 +80,4 @@ public class TrackerTest {
         List<Item> expect = Arrays.asList(one, two, four);
         assertThat(result, is(expect));
     }
-
 }

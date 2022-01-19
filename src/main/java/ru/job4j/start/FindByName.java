@@ -2,25 +2,22 @@ package ru.job4j.start;
 
 import ru.job4j.models.*;
 
-import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 
 public class FindByName extends BaseAction {
+    private final Output out;
 
-    public FindByName(int key, String name) {
-        super(key, name);
+    public FindByName(String name, Output out) {
+        super(name);
+        this.out = out;
     }
 
 
     @Override
     public void execute(Input input, Store tracker) {
-        System.out.println("----Поиск заявки по имени----");
+        out.println("----Поиск заявки по имени----");
         String name = input.ask("Введите имя заявки");
-        List<Item> item = null;
-        item = tracker.findByName(name);
-        System.out.println("Найденная заявка:" + item);
-
+        List<Item> item = tracker.findByName(name);
+        out.println("Найденная заявка:" + item);
     }
-
 }

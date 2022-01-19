@@ -12,12 +12,9 @@ import java.util.Properties;
 public class SqlTracker implements Store {
     private Connection cn;
 
-
-
     public SqlTracker(Connection cn) throws SQLException {
         init();
         this.cn =  cn;
-
     }
 
     public SqlTracker() {

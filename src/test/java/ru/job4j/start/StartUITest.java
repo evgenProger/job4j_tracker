@@ -81,6 +81,7 @@ public class StartUITest {
         Item one = tracker.add(new Item("testname1", "testdescription1"));
         Item two = tracker.add(new Item("testname2", "testdescription2"));
         Input input = new StubInput(new String[]{"4", two.getId(), "6"});
+        new StartUI(stdout, input, tracker).init();
         StringBuilder showitembyid = new StringBuilder(menu);
         showitembyid.append("-----Поиск заявки по id-----").append(ln);
         showitembyid.append("Найденная заявка");

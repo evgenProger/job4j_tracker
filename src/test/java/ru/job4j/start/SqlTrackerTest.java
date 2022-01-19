@@ -71,12 +71,13 @@ public class SqlTrackerTest {
     public void whenFindAllItemsThenNewSize() {
         try (SqlTracker tracker = new SqlTracker(ConnectionRollback.create(this.init()))) {
             List<Item> items;
+            int size = tracker.findAll().size();
             Item itemOne = new Item("itemOne");
             Item itemTwo = new Item("itemTwo");
             tracker.add(itemOne);
             tracker.add(itemTwo);
             items = tracker.findAll();
-            assertThat(items.size(), is(2));
+            assertThat(items.size(), is(size + 2));
         } catch (Exception e) {
             e.printStackTrace();
         }

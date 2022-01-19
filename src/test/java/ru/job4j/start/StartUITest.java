@@ -160,5 +160,4 @@ public class StartUITest {
         showitembyid.append(two).append(ln);
         assertThat(stdout.toString(), is(showitembyid.toString()));
     }
-
 }

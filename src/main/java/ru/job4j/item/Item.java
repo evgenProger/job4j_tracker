@@ -1,21 +1,25 @@
-package ru.job4j.models;
+package ru.job4j.item;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
-
+@Entity
+@Table(name = "items")
 public class Item {
 
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String name;
     private String description;
-    private long created;
+    private LocalDateTime created;
 
     public Item() {
     }
 
 
-    public Item(String name, String description, long created) {
+    public Item(String name, String description, LocalDateTime created) {
         this.name = name;
         this.description = description;
         this.created = created;
@@ -60,19 +64,19 @@ public class Item {
         this.description = desc;
     }
 
-    public long getCreated() {
+    public LocalDateTime getCreated() {
         return this.created;
     }
 
-    public void setCreated(long create) {
+    public void setCreated(LocalDateTime create) {
         this.created = create;
     }
 
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -86,10 +90,7 @@ public class Item {
             return false;
         }
         Item item = (Item) o;
-        return created == item.created
-                && Objects.equals(id, item.id)
-                && Objects.equals(name, item.name)
-                && Objects.equals(description, item.description);
+        return id == item.id && Objects.equals(name, item.name) && Objects.equals(description, item.description) && Objects.equals(created, item.created);
     }
 
     @Override
@@ -97,6 +98,3 @@ public class Item {
         return Objects.hash(id, name, description, created);
     }
 }
-
-
-

@@ -2,7 +2,6 @@ package ru.job4j.start;
 
 
 import org.junit.*;
-import ru.job4j.models.ConnectionRollback;
 import ru.job4j.models.Item;
 
 import java.io.InputStream;
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class SqlTrackerTest {
 

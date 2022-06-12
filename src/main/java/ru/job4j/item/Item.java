@@ -14,6 +14,8 @@ public class Item {
     private String name;
     private String description;
     private LocalDateTime created;
+    private String comment;
+    private String edit;
 
     public Item() {
     }

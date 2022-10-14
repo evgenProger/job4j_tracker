@@ -8,8 +8,7 @@ public class DeleteItem extends BaseAction {
         this.out = out;
     }
 
-
-    @Override
+       @Override
     public void execute(Input input, Store tracker) {
         out.println("-------Удаление заявки------");
         String id = input.ask("Введите id заявки");

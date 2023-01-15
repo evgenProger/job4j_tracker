@@ -70,7 +70,7 @@ public class HbmTracker implements Store, AutoCloseable {
         }
 
         @Override
-        public List<Item> findAll () {
+        public List<Item> findAll() {
             session.beginTransaction();
             List items = session.createQuery("from Item")
                                 .list();
@@ -81,7 +81,7 @@ public class HbmTracker implements Store, AutoCloseable {
         }
 
         @Override
-        public List<Item> findByName (String key) {
+        public List<Item> findByName(String key) {
             session.beginTransaction();
             Query<Item> query = session.createQuery("from Item as i where i.name = :fName", Item.class);
             query.setParameter("fName", key);
@@ -91,7 +91,7 @@ public class HbmTracker implements Store, AutoCloseable {
         }
 
         @Override
-        public Item findById (String id){
+        public Item findById(String id) {
             session.beginTransaction();
             Item result = session.get(Item.class, id);
             session.getTransaction()
@@ -101,7 +101,7 @@ public class HbmTracker implements Store, AutoCloseable {
         }
 
         @Override
-        public void close () throws Exception {
+        public void close() throws Exception {
             StandardServiceRegistryBuilder.destroy(registry);
         }
     }
